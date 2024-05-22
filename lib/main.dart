@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  //Platform.environment['API_KEY'] = 'AIzaSyB_MJjNH95HEQFzNZG5HkPcEEXSekT-4qY';
   runApp(const MyApp());
 }
 
