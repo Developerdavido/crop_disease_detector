@@ -17,7 +17,7 @@ class Utils {
 
   static TextStyle getHeaderStyle({Color? color}) {
     return GoogleFonts.lato(
-      fontSize: 24.sp,
+      fontSize: 20.sp,
       fontWeight: FontWeight.w700,
       color: color ?? Colors.black.withOpacity(0.8),
     );

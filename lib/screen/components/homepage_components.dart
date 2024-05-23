@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:disease_detector/screen/components/loader.dart';
 import 'package:disease_detector/utils/utils.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -98,8 +99,8 @@ customButton(
       Row(
         children: [
           Text("Disease Name", style: Utils.getHeaderStyle(color: Colors.black87), ),
-          Utils.horizontalPadding(space: 10.w),
-          Icon(Icons.info_outline, color: Colors.deepPurple, size: 24.sp,)
+          Utils.horizontalPadding(space: 6.w),
+          Icon(Icons.info_outline, color: Colors.deepPurple, size: 18.sp,)
         ],
       ),
       Utils.verticalPadding(space: 8.h),
@@ -134,8 +135,8 @@ extraComments({String? comments}) {
       Row(
         children: [
           Text("Comments", style: Utils.getHeaderStyle(color: Colors.black87), ),
-          Utils.horizontalPadding(space: 10.w),
-          Icon(Icons.comment, color: Colors.deepPurple, size: 24.sp,)
+          Utils.horizontalPadding(space: 6.w),
+          Icon(Icons.insert_comment_outlined, color: Colors.deepPurple, size: 18.sp,)
         ],
       ),
       Utils.verticalPadding(space: 8.h),
@@ -158,14 +159,14 @@ extraComments({String? comments}) {
   );
 }
 
-controlMeasures({List<String>? controls }) {
+controlMeasures({String? title, IconData? iconData, List<String>? controls }) {
   return Column(
     children: [
       Row(
         children: [
-          Text("Control Measures", style: Utils.getHeaderStyle(color: Colors.black87), ),
-          Utils.horizontalPadding(space: 10.w),
-          Icon(Icons.pest_control, color: Colors.deepPurple, size: 24.sp,)
+          Text(title ?? "Control Measures", style: Utils.getHeaderStyle(color: Colors.black87), ),
+          Utils.horizontalPadding(space: 6.w),
+          Icon(iconData ?? Icons.warning_amber, color: Colors.deepPurple, size: 16.sp,)
         ],
       ),
       Utils.verticalPadding(space: 8.h),
@@ -205,11 +206,12 @@ controlMeasures({List<String>? controls }) {
 
  rowWidget(String? title, String? data) {
   return Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       SizedBox(
         width: 0.4.sw,
           child: Text(title ?? "", style: Utils.getBodyStyle(color: Colors.black87), )),
-      Text(data ?? "", style: Utils.getBodyStyle(color: Colors.grey), )
+      Expanded(child: Text(data ?? "", style: Utils.getBodyStyle(color: Colors.grey), ))
     ],
   );
  }

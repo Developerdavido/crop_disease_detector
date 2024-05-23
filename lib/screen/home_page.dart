@@ -32,7 +32,25 @@ class HomePage extends StatelessWidget {
             Utils.verticalPadding(space: 30.h),
             imageContainer(homeVm.imageFile),
             Utils.verticalPadding(space: 30.h),
-            customButton(
+            homeVm.isLoading ? SizedBox(
+              height: 30.h,
+                width: 0.6.sw,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Searching...",
+                      style: Utils.getLabelStyle(),
+                    ),
+                    Utils.horizontalPadding(space: 12.w),
+                    SizedBox(
+                      width: 20.w,
+                      height: 20.h,
+                      child:  loader(color: Colors.deepPurple,strokeWidth: 0.5),
+                    )
+
+                  ],
+                )) :  customButton(
               onBtnTap: (){
                 if (homeVm.imageFile == null) {
                   Utils.showSnackBar(context, title: "Error", message: "An image of the crop to be inspected must be captured");
@@ -41,14 +59,16 @@ class HomePage extends StatelessWidget {
                 homeVm.generateResponse(context).then((value) {
                   if (value) {
                     Navigator.of(context).push(MaterialPageRoute(builder: (_)=> const ResultDetail()));
+                  } else {
+                    Utils.showSnackBar(context, title: "Error", message: "An error occurred while trying to fetch response");
                   }
                 }).onError((error, stackTrace) => Utils.showSnackBar(context, title: "Error", message: error.toString()));
+
 
               },
               color: Colors.deepPurpleAccent,
               title: "Submit",
               titleColor: Colors.white,
-              isLoading: homeVm.isLoading
             ),
             const Spacer(),
             Text("Powered by Gemini AI",
